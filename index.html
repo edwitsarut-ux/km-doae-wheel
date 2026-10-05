@@ -46,7 +46,7 @@ button:disabled{opacity:.55;cursor:not-allowed}
     <div class="center"><div class="pointer"></div><canvas id="groupWheel" width="600" height="600"></canvas></div>
     <div class="controls"><button id="spinGroupBtn">สุ่มกลุ่ม</button><button class="secondary" id="resetBtn">เริ่มใหม่</button></div>
     <div class="result" id="groupResult">ยังไม่ได้สุ่มกลุ่ม</div>
-    <div class="status" id="groupStatus">ระบบจะสุ่มจากทั้ง 7 กลุ่มแบบเท่าเทียมกัน และหยุดกึ่งกลางช่องที่ลูกศรชี้</div>
+    <div class="status" id="groupStatus">แต่ละกลุ่มสุ่มได้ 1 รอบ ยกเว้น Digital / AI / Data / GIS สุ่มได้ 2 รอบ</div>
   </div>
   <div class="card">
     <h2>ขั้นที่ 2 : สุ่มเรื่องภายในกลุ่ม <span class="tag" id="topicCountTag">0 เรื่อง</span></h2>
@@ -76,7 +76,27 @@ button:disabled{opacity:.55;cursor:not-allowed}
 <script>
 const KM_DATA = {"Digital / AI / Data / GIS": ["กลุ่มพัฒนาระบบบริหาร – Real-time Dashboard", "ศูนย์เทคโนโลยีสารสนเทศและการสื่อสาร – DOAE Pass Portal", "สสก.2 ราชบุรี – Digital Dashboard", "สสก.3 ระยอง – การใช้ AI จัดทำสื่อประชาสัมพันธ์", "สสก.4 ขอนแก่น – Prompt Engineering สำหรับ AI", "สสก.5 สงขลา – การประยุกต์ใช้ AI เพื่อเพิ่มประสิทธิภาพในงานส่งเสริมการเกษตร", "สสก.6 เชียงใหม่ – การใช้แผนที่และ GIS วิเคราะห์พื้นที่เกษตรและภัยพิบัติ", "สุพรรณบุรี – Dashboard วิเคราะห์ Hotspot ด้วย Power BI", "จันทบุรี – เทคนิคการขึ้นทะเบียนเกษตรกรดิจิทัล (e-Form / Geoplot)", "ฉะเชิงเทรา – องค์ความรู้ด้านการผลิตสื่อดิจิทัล", "ตราด – การประยุกต์ใช้ AI ในการจัดทำสื่อเผยแพร่ด้านการเกษตร", "นครนายก – ทักษะการขึ้นทะเบียนและปรับปรุงทะเบียนเกษตรกรสู่ยุค Digital Transformation", "ปราจีนบุรี – Reskilling/Upskilling ด้าน Digital Extension และ AI", "สระแก้ว – การจัดทำสื่อประชาสัมพันธ์ด้านการเกษตรด้วย AI", "ชัยภูมิ – การจัดทำสื่อวีดิทัศน์ (คลิปสั้นด้วย AI)", "มหาสารคาม – เทคนิคการประยุกต์ใช้ AI ขั้นสูง", "ยโสธร – การผลิตคลิปสั้นและการออกแบบสื่อประชาสัมพันธ์", "อุบลราชธานี – คลังชุดคำสั่งสำเร็จรูป (Prompt Templates)", "ชุมพร – เทคนิคการตัดต่อคลิปวิดีโอเพื่อการประชาสัมพันธ์", "ภูเก็ต – 4 เทคนิคลดความเสี่ยงการขึ้นและปรับปรุงทะเบียนเกษตรกร", "สตูล – เทคโนโลยีดิจิทัลและ AI เพื่อเผยแพร่ข่าวสารการเกษตร", "เชียงราย – AI และเครื่องมือดิจิทัลเพื่อสนับสนุนการจัดการความรู้และการผลิตสื่อ", "นครสวรรค์ – เทคนิคการประยุกต์ใช้ AI ขั้นสูงเพื่อการสร้างสื่อประชาสัมพันธ์", "อุทัยธานี – Dashboard ข้อมูลการเพาะปลูกพืชจังหวัดอุทัยธานี"], "Production Technology / Plant Health / Standards": ["กองขยายพันธุ์พืช – การแก้ปัญหาและปรับปรุงกระบวนการผลิตมันสำปะหลังโรงงาน", "กองส่งเสริมการอารักขาพืชและจัดการดินปุ๋ย – Active Surveillance", "สำนักส่งเสริมและจัดการสินค้าเกษตร – ความรู้พืชศาสตร์และแมลงเศรษฐกิจ", "กาญจนบุรี – BRACKISH SHIELD MODEL", "เพชรบุรี – IPM มะพร้าว 6 ขั้นตอน", "สมุทรสงคราม – การผลิตขยายแตนเบียนบราคอน", "สมุทรสาคร – การป้องกันและกำจัดโรคพืชและศัตรูพืชโดยชีววิธี", "สมุทรปราการ – การจัดการโรคและแมลงศัตรูพืชในพืชเศรษฐกิจ", "ขอนแก่น – ธนาคารท่อนพันธุ์มันสำปะหลังสะอาดแบบ 50:50", "สกลนคร – การใช้ปุ๋ยตามค่าวิเคราะห์ดินเพื่อเพิ่มประสิทธิภาพมันฝรั่งโรงงาน", "สุรินทร์ – เทคนิคจัดการแปลงสู่มาตรฐาน GAP พืชอาหาร", "หนองคาย – การจัดการศัตรูพืชแบบผสมผสาน", "กระบี่ – การจัดการต้นทุเรียนเล็ก ระยะ 1–3 ปี", "ตรัง – การออกแบบและติดตั้งระบบน้ำเพื่อการเกษตร", "นราธิวาส – เทคนิคการปลูกเมล่อนคุณภาพสูง", "ปัตตานี – การจัดการผลิตผักยกแคร่ด้วยเทคโนโลยีและนวัตกรรม", "พัทลุง – การอนุบาลต้นพันธุ์กล้วยหอมจากการเพาะเลี้ยงเนื้อเยื่อ", "แม่ฮ่องสอน – IPM ที่เหมาะสมกับแม่ฮ่องสอน", "เพชรบูรณ์ – มะเขือเทศราชินีคุณภาพและการผลิตนอกฤดู", "สุโขทัย – เทคนิคการผลิตอ้อยโรงงานที่มีคุณภาพ"], "Value / Market / Enterprise": ["กรุงเทพมหานคร – ดารุ้ลอิบาดะห์: วิสาหกิจชุมชนต้นแบบ", "พระนครศรีอยุธยา – การบริหารจัดการตลาดเกษตรกร", "นครปฐม – พลิกฟางข้าวเป็นกำไรด้วยการเพิ่มมูลค่าแบบครบวงจร", "ประจวบคีรีขันธ์ – การยกระดับกาแฟอัตลักษณ์บางสะพานสู่ Specialty Coffee", "ราชบุรี – หลักการบริหารจัดการตลาดเกษตรกร", "นครพนม – แนวทางสร้างรายได้เสริมจากสวนยางพารา", "บึงกาฬ – ฟาร์มปลอดภัยตามมาตรฐาน GAP และเชื่อมโยงตลาดสีเขียว", "บุรีรัมย์ – วิสาหกิจชุมชนเห็ดบ้านซับสมบูรณ์", "มุกดาหาร – การพัฒนาสินค้า Product Development Prototype", "นครศรีธรรมราช – ปัจจัยความสำเร็จของวิสาหกิจชุมชนกลุ่มยางก้อนถ้วย", "ระนอง – 7 ขั้นตอน ยกระดับกาแฟโรบัสต้าสู่ Fine Robusta", "สุราษฎร์ธานี – การผลิตแหนมเห็ดกรอบสมุนไพร", "กำแพงเพชร – ผำกำแพงเพชร: จาก GAP สู่เชิงพาณิชย์", "พิษณุโลก – มะม่วงน้ำดอกไม้สีทองสู่มะม่วงพรีเมียมนอกฤดู", "ลำพูน – ถอดรหัสเกษตรมูลค่าสูงด้วยพื้นที่และเครือข่าย"], "Climate / Green / Resilience": ["กองแผนงาน – Climate Change จากนโยบายสู่การปฏิบัติ", "กองส่งเสริมโครงการพระราชดำริฯ – แผนปฏิบัติการด้านพืชรองรับ Climate Change", "ชัยนาท – การปลูกข้าวที่เท่าทันต่อภูมิอากาศ", "ปทุมธานี – การทำนาปลอดการเผา", "ลพบุรี – การปลูกข้าวด้วยเทคโนโลยี 4 ปรับ", "สิงห์บุรี – การทำนาด้วยเทคโนโลยีที่เท่าทันต่อการเปลี่ยนแปลงสภาพภูมิอากาศ", "กาฬสินธุ์ – การจัดการเศษวัสดุทางการเกษตรโดยไม่เผา", "ร้อยเอ็ด – การทำนาที่เท่าทันการเปลี่ยนแปลงสภาพภูมิอากาศด้วยเทคนิค 2 ป.", "ศรีสะเกษ – 3R เกษตรปลอดการเผา", "หนองบัวลำภู – ไถคนละครึ่ง ฟื้นฟูโครงสร้างดินด้วยปอเทือง", "อำนาจเจริญ – การปลูกถั่วเขียวหลังนา", "สงขลา – กระบวนการส่งเสริมการผลิตไม้ผลเมืองร้อนภายใต้ CSA", "แพร่ – พืชมูลค่าสูงที่เท่าทันต่อการเปลี่ยนแปลงสภาพภูมิอากาศ (ส้มโอ GI)", "ลำปาง – เทคนิคการสร้างแผนที่ความเสี่ยงน้ำท่วม"], "Operational Excellence / Governance": ["กลุ่มตรวจสอบภายใน – การจัดทำ Audit Universe และแผนการตรวจสอบภายใน", "กองการเจ้าหน้าที่ – กฎ ก.พ. และการคำนวณเลื่อนเงินเดือน", "กองคลัง – การจัดทำและตรวจใบสำคัญก่อนการเบิกจ่ายเงิน", "กองพัฒนาเกษตรกร – การบริหารโครงการและหลักการเขียนหนังสือราชการ", "กองส่งเสริมวิสาหกิจชุมชน – เครื่องมือสำหรับการตัดสินใจเรื่องการเปิดเผยข้อมูลเอกสาร", "สำนักงานเลขานุการกรม – องค์ความรู้ประมวลกฎหมายอาญา มาตรา 147", "นนทบุรี – คู่มือการปฏิบัติงานเจ้าหน้าที่: ขั้นตอนงานทะเบียนวิสาหกิจชุมชน", "อุดรธานี – แนวทางการจัดทำเอกสารทางราชการที่ถูกต้อง", "น่าน – แนวทาง 6 ขั้นตอนในการจัดทำรายงานสถานการณ์สินค้าเกษตร", "พะเยา – แนวทางการตรวจสอบและให้คำแนะนำสำหรับนักวิชาการส่งเสริมการเกษตร"], "Area-based / Pain Point / Service Solution": ["กองวิจัยและพัฒนางานส่งเสริมการเกษตร – เทคนิคการวิเคราะห์ Pain Point", "อ่างทอง – การบูรณาการร่วมกับภาคีเครือข่ายเชิงพื้นที่", "ชลบุรี – การบูรณาการงานวิจัยสู่การแก้ปัญหาพื้นที่อย่างยั่งยืน", "ระยอง – การพัฒนาทักษะการจัดทำแผนพัฒนาการเกษตรระดับตำบล", "นครราชสีมา – MRCF Plus สู่ Service Solution", "ยะลา – Raman Model", "เชียงใหม่ – AREA SMART Model", "ตาก – การใช้ข้อมูลสารสนเทศการเกษตรเชิงพื้นที่แบบบูรณาการ"], "KM / Facilitation / Learning Capability": ["สำนักพัฒนาการถ่ายทอดเทคโนโลยี – แนวทางบูรณาการ S-M-C-R และ SECI", "สสก.1 ชัยนาท – เทคนิคการนิเทศงานแบบโค้ชเชิงพัฒนา", "สระบุรี – แนวทางการสื่อสารและถ่ายทอดความรู้ด้านเทคโนโลยีการผลิต", "เลย – ทักษะการเป็นวิทยากรกระบวนกรและการจัดเวทีชุมชน", "พิจิตร – การจัดเวทีชุมชนแบบมีส่วนร่วม", "อุตรดิตถ์ – กระบวนการโรงเรียนเกษตรกร", "ระยอง – กระบวนการจัดเวทีชุมชนเพื่อวิเคราะห์พื้นที่ คน สินค้า และห่วงโซ่อุปทาน"]};
 const palette = ["#3B82F6","#10B981","#F59E0B","#EF4444","#8B5CF6","#14B8A6","#F97316","#6366F1","#84CC16","#EC4899","#06B6D4","#A855F7"];
-let selectedGroup=null, selectedTopic=null, logs=[];
+let selectedGroup=null, selectedTopic=null, selectedBackup=null, logs=[];
+
+const INITIAL_GROUP_QUOTA = {};
+Object.keys(KM_DATA).forEach(g => {
+  INITIAL_GROUP_QUOTA[g] = g.startsWith("Digital / AI / Data / GIS") ? 2 : 1;
+});
+let groupQuota = {...INITIAL_GROUP_QUOTA};
+let remainingTopics = {};
+Object.keys(KM_DATA).forEach(g => remainingTopics[g] = [...KM_DATA[g]]);
+
+function getAvailableGroups(){
+  return Object.keys(KM_DATA).filter(g => groupQuota[g] > 0);
+}
+
+function getDisplayGroupLabel(g){
+  const left = groupQuota[g];
+  if (g.startsWith("Digital / AI / Data / GIS")) {
+    return g + " (" + left + " รอบ)";
+  }
+  return g;
+}
 
 function wrapText(ctx, text, x, y, maxWidth, lineHeight){
   const words=text.split(' '); let line=''; let lines=[];
@@ -140,7 +160,7 @@ function spin(canvasId, labels, onDone) {
 }
 
 function refreshTopicList(groupName){
-  const items=KM_DATA[groupName]||[];
+  const items=remainingTopics[groupName]||[];
   document.getElementById("topicListBox").innerHTML="<ol>"+items.map(x=>"<li>"+x+"</li>").join("")+"</ol>";
   document.getElementById("topicCountTag").textContent=items.length+" เรื่อง";
 }
@@ -153,39 +173,138 @@ function updateSummary(){
   document.getElementById("summaryBox").innerHTML="<strong>กลุ่ม:</strong> "+(selectedGroup||"-")+"<br><strong>เรื่อง:</strong> "+(selectedTopic||"-");
 }
 function resetAll(){
-  selectedGroup=null; selectedTopic=null; logs=[];
-  drawWheel("groupWheel", Object.keys(KM_DATA)); drawWheel("topicWheel", []);
+  selectedGroup=null;
+  selectedTopic=null;
+  selectedBackup=null;
+  logs=[];
+  groupQuota = {...INITIAL_GROUP_QUOTA};
+  remainingTopics = {};
+  Object.keys(KM_DATA).forEach(g => remainingTopics[g] = [...KM_DATA[g]]);
+
+  drawWheel("groupWheel", getAvailableGroups().map(getDisplayGroupLabel));
+  drawWheel("topicWheel", []);
+
   document.getElementById("groupResult").innerHTML="ยังไม่ได้สุ่มกลุ่ม";
   document.getElementById("topicResult").innerHTML="กรุณาสุ่มกลุ่มก่อน";
-  document.getElementById("groupStatus").textContent="ระบบจะสุ่มจากทั้ง 7 กลุ่มแบบเท่าเทียมกัน และหยุดกึ่งกลางช่องที่ลูกศรชี้";
-  document.getElementById("topicStatus").textContent="เมื่อได้กลุ่มแล้ว ระบบจะโหลดรายชื่อเรื่องในกลุ่มนั้นอัตโนมัติ";
+  const backup = document.getElementById("backupResult");
+  if (backup) backup.innerHTML="เรื่องสำรอง: -";
+
+  document.getElementById("groupStatus").textContent=
+    "แต่ละกลุ่มสุ่มได้ 1 รอบ ยกเว้น Digital / AI / Data / GIS สุ่มได้ 2 รอบ";
+  document.getElementById("topicStatus").textContent=
+    "เมื่อได้กลุ่มแล้ว ระบบจะโหลดรายชื่อเรื่องในกลุ่มนั้นอัตโนมัติ";
+
   document.getElementById("topicListBox").innerHTML='<div class="status">ยังไม่มีกลุ่มที่ถูกเลือก</div>';
-  document.getElementById("spinTopicBtn").disabled=true; document.getElementById("copyBtn").disabled=true;
+  document.getElementById("spinTopicBtn").disabled=true;
+  document.getElementById("spinGroupBtn").disabled=false;
+
+  const backupBtn = document.getElementById("spinBackupBtn");
+  if (backupBtn) backupBtn.disabled=true;
+  document.getElementById("copyBtn").disabled=true;
   document.getElementById("topicCountTag").textContent="0 เรื่อง";
   document.getElementById("logBox").textContent="ยังไม่มีประวัติการสุ่ม";
   updateSummary();
 }
-document.getElementById("spinGroupBtn").addEventListener("click", ()=>{
-  const labels=Object.keys(KM_DATA); document.getElementById("groupStatus").textContent="กำลังสุ่มกลุ่ม...";
-  spin("groupWheel", labels, idx=>{
-    selectedGroup=labels[idx]; selectedTopic=null; refreshTopicList(selectedGroup); drawWheel("topicWheel", KM_DATA[selectedGroup]);
-    document.getElementById("groupResult").innerHTML="<strong>ผลการสุ่มกลุ่ม:</strong> "+selectedGroup;
-    document.getElementById("groupStatus").textContent="ได้กลุ่มแล้ว สามารถสุ่มเรื่องต่อได้";
+document.getElementById("spinGroupBtn").addEventListener("click", () => {
+  const availableGroups = getAvailableGroups();
+  if (!availableGroups.length) {
+    document.getElementById("groupResult").innerHTML="<strong>สุ่มครบทุกกลุ่มแล้ว</strong>";
+    document.getElementById("groupStatus").textContent="กด “เริ่มใหม่” หากต้องการสุ่มรอบใหม่";
+    return;
+  }
+
+  const displayLabels = availableGroups.map(getDisplayGroupLabel);
+  document.getElementById("groupStatus").textContent="กำลังสุ่มกลุ่ม...";
+  document.getElementById("spinGroupBtn").disabled=true;
+
+  spin("groupWheel", displayLabels, idx => {
+    selectedGroup = availableGroups[idx];
+    selectedTopic = null;
+    selectedBackup = null;
+
+    refreshTopicList(selectedGroup);
+    drawWheel("topicWheel", remainingTopics[selectedGroup]);
+
+    document.getElementById("groupResult").innerHTML =
+      "<strong>ผลการสุ่มกลุ่ม:</strong> " + selectedGroup +
+      (selectedGroup.startsWith("Digital / AI / Data / GIS")
+        ? " <span class='tag'>เหลือสิทธิ์ " + groupQuota[selectedGroup] + " รอบก่อนสุ่มเรื่อง</span>"
+        : "");
+
+    document.getElementById("groupStatus").textContent=
+      "ได้กลุ่มแล้ว กรุณาสุ่มเรื่องก่อน ระบบจึงจะตัดกลุ่มนี้ออกจากวงล้อ";
     document.getElementById("topicResult").innerHTML="พร้อมสุ่มเรื่องในกลุ่มนี้";
-    document.getElementById("topicStatus").textContent="กลุ่มนี้มี "+KM_DATA[selectedGroup].length+" เรื่อง";
-    document.getElementById("spinTopicBtn").disabled=false; document.getElementById("copyBtn").disabled=true;
-    addLog("สุ่มกลุ่มได้: "+selectedGroup); updateSummary();
+
+    const backup = document.getElementById("backupResult");
+    if (backup) backup.innerHTML="เรื่องสำรอง: -";
+
+    document.getElementById("topicStatus").textContent=
+      "กลุ่มนี้มี " + remainingTopics[selectedGroup].length + " เรื่องที่ยังไม่ถูกสุ่ม";
+    document.getElementById("spinTopicBtn").disabled=false;
+
+    const backupBtn = document.getElementById("spinBackupBtn");
+    if (backupBtn) backupBtn.disabled=true;
+    document.getElementById("copyBtn").disabled=true;
+
+    addLog("สุ่มกลุ่มได้: " + selectedGroup);
+    updateSummary();
   });
 });
-document.getElementById("spinTopicBtn").addEventListener("click", ()=>{
-  if(!selectedGroup) return;
-  const labels=KM_DATA[selectedGroup]; document.getElementById("topicStatus").textContent="กำลังสุ่มเรื่อง...";
-  spin("topicWheel", labels, idx=>{
-    selectedTopic=labels[idx];
-    document.getElementById("topicResult").innerHTML="<strong>ผลการสุ่มเรื่อง:</strong> "+selectedTopic;
-    document.getElementById("topicStatus").textContent="สามารถคัดลอกผลลัพธ์ไปใช้ในที่ประชุมได้";
+document.getElementById("spinTopicBtn").addEventListener("click", () => {
+  if (!selectedGroup) return;
+
+  const labels = remainingTopics[selectedGroup];
+  if (!labels || !labels.length) {
+    document.getElementById("topicResult").innerHTML="<strong>ไม่มีเรื่องเหลือให้สุ่มในกลุ่มนี้</strong>";
+    return;
+  }
+
+  document.getElementById("spinTopicBtn").disabled=true;
+  document.getElementById("topicStatus").textContent="กำลังสุ่มเรื่อง...";
+
+  spin("topicWheel", labels, idx => {
+    selectedTopic = labels[idx];
+
+    // ตัด "เรื่องหลัก" ที่สุ่มได้ออก ป้องกันการสุ่มเรื่องเดิมซ้ำเมื่อ Digital ถูกสุ่มรอบที่ 2
+    remainingTopics[selectedGroup] = remainingTopics[selectedGroup].filter(x => x !== selectedTopic);
+
+    // เมื่อสุ่มเรื่องเสร็จ จึงหักสิทธิ์ของกลุ่ม
+    groupQuota[selectedGroup] = Math.max(0, groupQuota[selectedGroup] - 1);
+
+    document.getElementById("topicResult").innerHTML =
+      "<strong>ผลการสุ่มเรื่องหลัก:</strong> " + selectedTopic;
+
+    // วาดวงล้อกลุ่มใหม่ทันที
+    const availableGroups = getAvailableGroups();
+    drawWheel("groupWheel", availableGroups.map(getDisplayGroupLabel));
+
+    // Digital ยังเหลือรอบ ก็ยังอยู่ในวงล้อ / กลุ่มอื่นจะหายทันที
+    if (groupQuota[selectedGroup] > 0) {
+      document.getElementById("groupStatus").textContent =
+        selectedGroup + " ยังเหลือสิทธิ์สุ่มอีก " + groupQuota[selectedGroup] + " รอบ";
+    } else {
+      document.getElementById("groupStatus").textContent =
+        selectedGroup + " ถูกตัดออกจากวงล้อกลุ่มแล้ว";
+    }
+
+    refreshTopicList(selectedGroup);
+
+    document.getElementById("topicStatus").textContent =
+      "สุ่มเรื่องหลักเรียบร้อยแล้ว สามารถสุ่มเรื่องสำรอง หรือสุ่มกลุ่มถัดไปได้";
+
+    const backupBtn = document.getElementById("spinBackupBtn");
+    if (backupBtn) backupBtn.disabled=false;
     document.getElementById("copyBtn").disabled=false;
-    addLog("สุ่มเรื่องได้: "+selectedTopic); updateSummary();
+    document.getElementById("spinGroupBtn").disabled = (availableGroups.length === 0);
+
+    addLog("สุ่มเรื่องหลักได้: " + selectedTopic);
+    if (groupQuota[selectedGroup] === 0) {
+      addLog("ตัดกลุ่มออกจากวงล้อ: " + selectedGroup);
+    } else {
+      addLog("กลุ่มยังคงอยู่ในวงล้ออีก " + groupQuota[selectedGroup] + " รอบ: " + selectedGroup);
+    }
+
+    updateSummary();
   });
 });
 document.getElementById("copyBtn").addEventListener("click", async ()=>{
