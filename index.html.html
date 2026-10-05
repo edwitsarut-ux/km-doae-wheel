@@ -46,7 +46,7 @@ button:disabled{opacity:.55;cursor:not-allowed}
     <div class="center"><div class="pointer"></div><canvas id="groupWheel" width="600" height="600"></canvas></div>
     <div class="controls"><button id="spinGroupBtn">สุ่มกลุ่ม</button><button class="secondary" id="resetBtn">เริ่มใหม่</button></div>
     <div class="result" id="groupResult">ยังไม่ได้สุ่มกลุ่ม</div>
-    <div class="status" id="groupStatus">ระบบจะสุ่มจากทั้ง 7 กลุ่มแบบเท่าเทียมกัน</div>
+    <div class="status" id="groupStatus">ระบบจะสุ่มจากทั้ง 7 กลุ่มแบบเท่าเทียมกัน และหยุดกึ่งกลางช่องที่ลูกศรชี้</div>
   </div>
   <div class="card">
     <h2>ขั้นที่ 2 : สุ่มเรื่องภายในกลุ่ม <span class="tag" id="topicCountTag">0 เรื่อง</span></h2>
@@ -105,20 +105,37 @@ function drawWheel(canvasId, labels, rotation=0){
   ctx.fillStyle="#203040"; ctx.font="bold 24px TH Sarabun New, Sarabun, sans-serif"; ctx.textAlign="center"; ctx.fillText("สุ่ม",cx,cy+8);
 }
 
-function spin(canvasId, labels, onDone){
-  const duration=4500+Math.random()*1200, start=performance.now(), turns=7+Math.random()*5, extra=Math.random()*Math.PI*2;
-  function animate(now){
-    const t=Math.min((now-start)/duration,1), eased=1-Math.pow(1-t,3), current=(turns*Math.PI*2+extra)*eased;
+function spin(canvasId, labels, onDone) {
+  if (!labels || !labels.length) return;
+
+  // 1) เลือกผลลัพธ์ก่อน เพื่อให้ "ข้อความผลการสุ่ม" กับ "ช่องที่ลูกศรชี้" เป็นรายการเดียวกันแน่นอน
+  const winnerIndex = Math.floor(Math.random() * labels.length);
+
+  // 2) คำนวณมุมให้ "กึ่งกลางช่องที่ชนะ" ไปหยุดตรงลูกศรด้านบนพอดี
+  const slice = Math.PI * 2 / labels.length;
+  const turns = 7 + Math.floor(Math.random() * 5); // หมุนหลายรอบเพื่อความรู้สึกเป็นวงล้อจริง
+  const targetRotation = turns * Math.PI * 2 - (winnerIndex + 0.5) * slice;
+
+  const duration = 4500 + Math.random() * 1000;
+  const start = performance.now();
+
+  function animate(now) {
+    const elapsed = now - start;
+    const t = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - t, 3);
+    const current = targetRotation * eased;
+
     drawWheel(canvasId, labels, current);
-    if(t<1) requestAnimationFrame(animate); else {
-      const slice=Math.PI*2/labels.length;
-      const normalized=((current%(Math.PI*2))+Math.PI*2)%(Math.PI*2);
-      // Pointer อยู่ตำแหน่ง 12 นาฬิกา และวงล้อเริ่มชิ้นแรกที่ 12 นาฬิกา
-      const relative=(((-normalized)%(Math.PI*2))+(Math.PI*2))%(Math.PI*2);
-      const index=Math.floor(relative/slice)%labels.length;
-      onDone(index);
+
+    if (t < 1) {
+      requestAnimationFrame(animate);
+    } else {
+      // วาดอีกครั้งด้วยมุมปลายทางที่แน่นอน ป้องกันเศษทศนิยมจากเฟรมสุดท้าย
+      drawWheel(canvasId, labels, targetRotation);
+      onDone(winnerIndex);
     }
   }
+
   requestAnimationFrame(animate);
 }
 
@@ -140,7 +157,7 @@ function resetAll(){
   drawWheel("groupWheel", Object.keys(KM_DATA)); drawWheel("topicWheel", []);
   document.getElementById("groupResult").innerHTML="ยังไม่ได้สุ่มกลุ่ม";
   document.getElementById("topicResult").innerHTML="กรุณาสุ่มกลุ่มก่อน";
-  document.getElementById("groupStatus").textContent="ระบบจะสุ่มจากทั้ง 7 กลุ่มแบบเท่าเทียมกัน";
+  document.getElementById("groupStatus").textContent="ระบบจะสุ่มจากทั้ง 7 กลุ่มแบบเท่าเทียมกัน และหยุดกึ่งกลางช่องที่ลูกศรชี้";
   document.getElementById("topicStatus").textContent="เมื่อได้กลุ่มแล้ว ระบบจะโหลดรายชื่อเรื่องในกลุ่มนั้นอัตโนมัติ";
   document.getElementById("topicListBox").innerHTML='<div class="status">ยังไม่มีกลุ่มที่ถูกเลือก</div>';
   document.getElementById("spinTopicBtn").disabled=true; document.getElementById("copyBtn").disabled=true;
