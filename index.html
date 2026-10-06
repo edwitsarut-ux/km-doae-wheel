@@ -3,364 +3,108 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>การประชุมสรุปบทเรียนการจัดการความรู้ กรมส่งเสริมการเกษตร ปี 2569</title>
+<title>KM DOAE 2569 – วงล้อสุ่มนำเสนอ</title>
 <style>
-body{margin:0;background:#f6f8fb;color:#203040;font-family:"TH Sarabun New","Sarabun","Noto Sans Thai",sans-serif}
-.wrap{max-width:1400px;margin:0 auto;padding:24px}
-h1{margin:0 0 8px;font-size:40px;color:#14532d}
-.subtitle{font-size:22px;color:#5f6d7a;margin-bottom:18px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.card{background:#fff;border:1px solid #dbe3ea;border-radius:20px;padding:20px;box-shadow:0 8px 24px rgba(0,0,0,.05)}
-h2{margin:0 0 12px;font-size:30px;color:#0b5c9e}
-.center{display:flex;flex-direction:column;align-items:center}
-.pointer{width:0;height:0;border-left:18px solid transparent;border-right:18px solid transparent;border-top:28px solid #d32f2f;margin-bottom:-8px;z-index:2}
-canvas{width:100%;max-width:520px;aspect-ratio:1/1}
-.controls{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0}
-button{border:none;border-radius:14px;padding:12px 18px;font-size:22px;cursor:pointer;color:#fff;background:#0b5c9e}
-button.secondary{background:#6b7280}
-button.green{background:#2f7d32}
-button:disabled{opacity:.55;cursor:not-allowed}
-.result{margin-top:12px;padding:14px 16px;border-radius:14px;background:#eef6ff;border:1px solid #c9ddf1;width:100%;font-size:24px;line-height:1.35}
-.status{font-size:20px;color:#5f6d7a}
-.tag{display:inline-block;padding:4px 10px;border-radius:999px;font-size:18px;background:#eef8ef;color:#2f7d32;margin-left:8px}
-.listbox{max-height:420px;overflow:auto;border:1px solid #dbe3ea;border-radius:14px;padding:10px 14px;background:#fbfcfe}
-.listbox ol{margin:0;padding-left:28px;font-size:20px;line-height:1.5}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.logbox{font-size:18px;line-height:1.4;max-height:220px;overflow:auto;background:#fcfcfc;border:1px solid #dbe3ea;border-radius:14px;padding:10px 14px}
-.foot{margin-top:20px;font-size:18px;color:#5f6d7a}
-@media (max-width:1050px){.grid,.two{grid-template-columns:1fr}}
+:root{--green:#245d3c;--blue:#155e9a;--muted:#64748b;--line:#dbe4e8;--bg:#f4f7f5}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#1f2937;font-family:"TH Sarabun New","Sarabun","Noto Sans Thai",sans-serif}
+.wrap{max-width:1440px;margin:auto;padding:22px}.hero{background:linear-gradient(135deg,#174f35,#347b49);color:white;border-radius:22px;padding:22px 26px;box-shadow:0 8px 24px #0002}.hero h1{margin:0;font-size:40px}.hero p{font-size:22px;margin:6px 0 0;opacity:.95}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:22px}.card{background:white;border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:0 6px 20px #0000000d}.card h2{margin:0 0 10px;font-size:29px;color:var(--blue)}
+.center{display:flex;flex-direction:column;align-items:center}.pointer{width:0;height:0;border-left:18px solid transparent;border-right:18px solid transparent;border-top:29px solid #c62828;margin-bottom:-9px;z-index:3}canvas{width:100%;max-width:520px;aspect-ratio:1/1}
+.controls{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}button{border:0;border-radius:12px;padding:10px 16px;color:white;font-size:21px;cursor:pointer;background:var(--blue)}button.green{background:#2f7d32}button.orange{background:#bd6b00}button.amber{background:#8c5a00}button.gray{background:#64748b}button:disabled{opacity:.42;cursor:not-allowed}
+.result{margin-top:8px;padding:12px 14px;border:1px solid #cfdde8;border-radius:12px;background:#f3f8fc;font-size:23px;line-height:1.35}.reserve{background:#fff8ed;border-color:#edc98c}.status{margin-top:6px;font-size:19px;color:var(--muted)}.tag{display:inline-block;border-radius:999px;background:#e8f4eb;color:#2f7d32;padding:3px 9px;font-size:18px;margin-left:6px}
+.listbox{max-height:390px;overflow:auto;border:1px solid var(--line);border-radius:12px;background:#fbfcfc;padding:10px 14px}.listbox ol{margin:0;padding-left:26px;font-size:19px;line-height:1.45}.summary{font-size:22px}.log{max-height:220px;overflow:auto;border:1px solid var(--line);border-radius:12px;background:#fbfcfc;padding:10px;font-size:18px;line-height:1.4}.note{margin-top:12px;color:var(--muted);font-size:18px}
+@media(max-width:1050px){.grid{grid-template-columns:1fr}.hero h1{font-size:34px}}
 </style>
 </head>
 <body>
 <div class="wrap">
-<h1>การประชุมสรุปบทเรียนการจัดการความรู้ กรมส่งเสริมการเกษตร ปี 2569</h1>
-<div class="subtitle">ระบบสุ่มนำเสนอ 2 ชั้น: <strong>สุ่มกลุ่มองค์ความรู้</strong> แล้วจึง <strong>สุ่มเรื่องหลัก + สำรอง 2 เรื่อง</strong> ภายในกลุ่ม</div>
-<div style="display:flex;gap:12px;flex-wrap:wrap;margin:14px 0 18px;">
-  <button id="openFullBtn" style="background:#1f4e3d;">เปิดหน้าเต็มในแท็บใหม่</button>
-</div>
-
-
-<div class="grid">
-  <div class="card">
-    <h2>ขั้นที่ 1 : สุ่มกลุ่มองค์ความรู้ <span class="tag">7 กลุ่ม</span></h2>
-    <div class="center"><div class="pointer"></div><canvas id="groupWheel" width="600" height="600"></canvas></div>
-    <div class="controls"><button id="spinGroupBtn">สุ่มกลุ่ม</button><button class="secondary" id="resetBtn">เริ่มใหม่</button></div>
-    <div class="result" id="groupResult">ยังไม่ได้สุ่มกลุ่ม</div>
-    <div class="status" id="groupStatus">ทุกกลุ่มจะถูกสุ่ม 1 ครั้ง เมื่อได้เรื่องหลักแล้ว กลุ่มนั้นจะหายออกจากวงล้อ และสามารถสุ่มสำรองได้อีก 2 เรื่อง</div>
+  <div class="hero">
+    <h1>การสุ่มนำเสนอผลการจัดการความรู้ (KM) ปี 2569</h1>
+    <p>สุ่มกลุ่ม 1 ครั้งต่อกลุ่ม → สุ่มเรื่องหลัก 1 เรื่อง → เลือกสุ่มสำรองได้อีก 2 เรื่องจากกลุ่มเดียวกัน</p>
   </div>
-  <div class="card">
-    <h2>ขั้นที่ 2 : สุ่มเรื่องภายในกลุ่ม <span class="tag" id="topicCountTag">0 เรื่อง</span></h2>
-    <div class="center"><div class="pointer"></div><canvas id="topicWheel" width="600" height="600"></canvas></div>
-    <div class="controls">
-        <button class="green" id="spinTopicBtn" disabled>สุ่มเรื่องหลัก</button>
-        <button id="spinBackup1Btn" disabled style="background:#c06a00;">สุ่มสำรอง 1</button>
-        <button id="spinBackup2Btn" disabled style="background:#9a5b00;">สุ่มสำรอง 2</button>
-        <button class="secondary" id="copyBtn" disabled>คัดลอกผลลัพธ์</button>
-      </div>
-    <div class="result" id="topicResult">กรุณาสุ่มกลุ่มก่อน</div>
-        <div class="result" id="backup1Result" style="background:#fff7ea;border-color:#f0be6b;">สำรอง 1: -</div>
-        <div class="result" id="backup2Result" style="background:#fffaf1;border-color:#e3c17a;">สำรอง 2: -</div>
-    <div class="status" id="topicStatus">เมื่อได้กลุ่มแล้ว ระบบจะโหลดรายชื่อเรื่องในกลุ่มนั้นอัตโนมัติ</div>
-  </div>
-</div>
 
-<div class="grid" style="margin-top:24px">
-  <div class="card">
-    <h2>รายชื่อเรื่องในกลุ่มที่ถูกเลือก</h2>
-    <div class="listbox" id="topicListBox"><div class="status">ยังไม่มีกลุ่มที่ถูกเลือก</div></div>
-  </div>
-  <div class="card">
-    <h2>สรุปผลการสุ่ม</h2>
-    <div class="two">
-      <div><div class="result" id="summaryBox"><strong>กลุ่ม:</strong> -<br><strong>เรื่องหลัก:</strong> -<br><strong>เรื่องสำรอง:</strong> -</div></div>
-      <div><div class="logbox" id="logBox">ยังไม่มีประวัติการสุ่ม</div></div>
+  <div class="grid">
+    <div class="card">
+      <h2>ขั้นที่ 1 : สุ่มกลุ่มองค์ความรู้ <span class="tag" id="groupCountTag">7 กลุ่ม</span></h2>
+      <div class="center"><div class="pointer"></div><canvas id="groupWheel" width="600" height="600"></canvas></div>
+      <div class="controls"><button id="spinGroupBtn">สุ่มกลุ่ม</button><button id="resetBtn" class="gray">เริ่มใหม่ทั้งหมด</button></div>
+      <div class="result" id="groupResult">ยังไม่ได้สุ่มกลุ่ม</div>
+      <div class="status" id="groupStatus">ทุกกลุ่มมีสิทธิ์ถูกสุ่ม 1 ครั้ง</div>
     </div>
-    <div class="foot">วิธีใช้: แชร์หน้าจอนี้ในที่ประชุม แล้วกด “สุ่มกลุ่ม” จากนั้นกด “สุ่มเรื่อง” เพื่อให้กระบวนการโปร่งใสและเข้าใจง่าย</div>
+
+    <div class="card">
+      <h2>ขั้นที่ 2 : สุ่มเรื่องภายในกลุ่ม <span class="tag" id="topicCountTag">0 เรื่อง</span></h2>
+      <div class="center"><div class="pointer"></div><canvas id="topicWheel" width="600" height="600"></canvas></div>
+      <div class="controls">
+        <button id="spinMainBtn" class="green" disabled>สุ่มเรื่องหลัก</button>
+        <button id="spinBackup1Btn" class="orange" disabled>สุ่มสำรอง 1</button>
+        <button id="spinBackup2Btn" class="amber" disabled>สุ่มสำรอง 2</button>
+        <button id="nextGroupBtn" class="gray" disabled>ไปกลุ่มถัดไป</button>
+      </div>
+      <div class="result" id="mainResult">เรื่องหลัก: -</div>
+      <div class="result reserve" id="backup1Result">สำรอง 1: -</div>
+      <div class="result reserve" id="backup2Result">สำรอง 2: -</div>
+      <div class="status" id="topicStatus">กรุณาสุ่มกลุ่มก่อน</div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card"><h2>รายชื่อเรื่องที่ยังเหลือในกลุ่มนี้</h2><div class="listbox" id="topicList"><div class="status">ยังไม่มีกลุ่มที่ถูกเลือก</div></div></div>
+    <div class="card">
+      <h2>สรุปผลการสุ่ม</h2>
+      <div class="result summary" id="summaryBox"><strong>กลุ่ม:</strong> -<br><strong>เรื่องหลัก:</strong> -<br><strong>สำรอง 1:</strong> -<br><strong>สำรอง 2:</strong> -</div>
+      <div class="controls"><button id="copyBtn" class="gray" disabled>คัดลอกผลลัพธ์</button></div>
+      <div class="log" id="logBox">ยังไม่มีประวัติการสุ่ม</div>
+      <div class="note">หลังได้เรื่องหลัก กลุ่มนั้นจะถูกตัดออกจากวงล้อกลุ่มทันที แต่ยังสามารถสุ่มสำรอง 1 และ 2 จากเรื่องที่เหลือในกลุ่มเดียวกันได้</div>
+    </div>
   </div>
 </div>
-</div>
-
 <script>
 const KM_DATA = {"Digital / AI / Data / GIS": ["กลุ่มพัฒนาระบบบริหาร – Real-time Dashboard", "ศูนย์เทคโนโลยีสารสนเทศและการสื่อสาร – DOAE Pass Portal", "สสก.2 ราชบุรี – Digital Dashboard", "สสก.3 ระยอง – การใช้ AI จัดทำสื่อประชาสัมพันธ์", "สสก.4 ขอนแก่น – Prompt Engineering สำหรับ AI", "สสก.5 สงขลา – การประยุกต์ใช้ AI เพื่อเพิ่มประสิทธิภาพในงานส่งเสริมการเกษตร", "สสก.6 เชียงใหม่ – การใช้แผนที่และ GIS วิเคราะห์พื้นที่เกษตรและภัยพิบัติ", "สุพรรณบุรี – Dashboard วิเคราะห์ Hotspot ด้วย Power BI", "จันทบุรี – เทคนิคการขึ้นทะเบียนเกษตรกรดิจิทัล (e-Form / Geoplot)", "ฉะเชิงเทรา – องค์ความรู้ด้านการผลิตสื่อดิจิทัล", "ตราด – การประยุกต์ใช้ AI ในการจัดทำสื่อเผยแพร่ด้านการเกษตร", "นครนายก – ทักษะการขึ้นทะเบียนและปรับปรุงทะเบียนเกษตรกรสู่ยุค Digital Transformation", "ปราจีนบุรี – Reskilling/Upskilling ด้าน Digital Extension และ AI", "สระแก้ว – การจัดทำสื่อประชาสัมพันธ์ด้านการเกษตรด้วย AI", "ชัยภูมิ – การจัดทำสื่อวีดิทัศน์ (คลิปสั้นด้วย AI)", "มหาสารคาม – เทคนิคการประยุกต์ใช้ AI ขั้นสูง", "ยโสธร – การผลิตคลิปสั้นและการออกแบบสื่อประชาสัมพันธ์", "อุบลราชธานี – คลังชุดคำสั่งสำเร็จรูป (Prompt Templates)", "ชุมพร – เทคนิคการตัดต่อคลิปวิดีโอเพื่อการประชาสัมพันธ์", "ภูเก็ต – 4 เทคนิคลดความเสี่ยงการขึ้นและปรับปรุงทะเบียนเกษตรกร", "สตูล – เทคโนโลยีดิจิทัลและ AI เพื่อเผยแพร่ข่าวสารการเกษตร", "เชียงราย – AI และเครื่องมือดิจิทัลเพื่อสนับสนุนการจัดการความรู้และการผลิตสื่อ", "นครสวรรค์ – เทคนิคการประยุกต์ใช้ AI ขั้นสูงเพื่อการสร้างสื่อประชาสัมพันธ์", "อุทัยธานี – Dashboard ข้อมูลการเพาะปลูกพืชจังหวัดอุทัยธานี"], "Production Technology / Plant Health / Standards": ["กองขยายพันธุ์พืช – การแก้ปัญหาและปรับปรุงกระบวนการผลิตมันสำปะหลังโรงงาน", "กองส่งเสริมการอารักขาพืชและจัดการดินปุ๋ย – Active Surveillance", "สำนักส่งเสริมและจัดการสินค้าเกษตร – ความรู้พืชศาสตร์และแมลงเศรษฐกิจ", "กาญจนบุรี – BRACKISH SHIELD MODEL", "เพชรบุรี – IPM มะพร้าว 6 ขั้นตอน", "สมุทรสงคราม – การผลิตขยายแตนเบียนบราคอน", "สมุทรสาคร – การป้องกันและกำจัดโรคพืชและศัตรูพืชโดยชีววิธี", "สมุทรปราการ – การจัดการโรคและแมลงศัตรูพืชในพืชเศรษฐกิจ", "ขอนแก่น – ธนาคารท่อนพันธุ์มันสำปะหลังสะอาดแบบ 50:50", "สกลนคร – การใช้ปุ๋ยตามค่าวิเคราะห์ดินเพื่อเพิ่มประสิทธิภาพมันฝรั่งโรงงาน", "สุรินทร์ – เทคนิคจัดการแปลงสู่มาตรฐาน GAP พืชอาหาร", "หนองคาย – การจัดการศัตรูพืชแบบผสมผสาน", "กระบี่ – การจัดการต้นทุเรียนเล็ก ระยะ 1–3 ปี", "ตรัง – การออกแบบและติดตั้งระบบน้ำเพื่อการเกษตร", "นราธิวาส – เทคนิคการปลูกเมล่อนคุณภาพสูง", "ปัตตานี – การจัดการผลิตผักยกแคร่ด้วยเทคโนโลยีและนวัตกรรม", "พัทลุง – การอนุบาลต้นพันธุ์กล้วยหอมจากการเพาะเลี้ยงเนื้อเยื่อ", "แม่ฮ่องสอน – IPM ที่เหมาะสมกับแม่ฮ่องสอน", "เพชรบูรณ์ – มะเขือเทศราชินีคุณภาพและการผลิตนอกฤดู", "สุโขทัย – เทคนิคการผลิตอ้อยโรงงานที่มีคุณภาพ"], "Value / Market / Enterprise": ["กรุงเทพมหานคร – ดารุ้ลอิบาดะห์: วิสาหกิจชุมชนต้นแบบ", "พระนครศรีอยุธยา – การบริหารจัดการตลาดเกษตรกร", "นครปฐม – พลิกฟางข้าวเป็นกำไรด้วยการเพิ่มมูลค่าแบบครบวงจร", "ประจวบคีรีขันธ์ – การยกระดับกาแฟอัตลักษณ์บางสะพานสู่ Specialty Coffee", "ราชบุรี – หลักการบริหารจัดการตลาดเกษตรกร", "นครพนม – แนวทางสร้างรายได้เสริมจากสวนยางพารา", "บึงกาฬ – ฟาร์มปลอดภัยตามมาตรฐาน GAP และเชื่อมโยงตลาดสีเขียว", "บุรีรัมย์ – วิสาหกิจชุมชนเห็ดบ้านซับสมบูรณ์", "มุกดาหาร – การพัฒนาสินค้า Product Development Prototype", "นครศรีธรรมราช – ปัจจัยความสำเร็จของวิสาหกิจชุมชนกลุ่มยางก้อนถ้วย", "ระนอง – 7 ขั้นตอน ยกระดับกาแฟโรบัสต้าสู่ Fine Robusta", "สุราษฎร์ธานี – การผลิตแหนมเห็ดกรอบสมุนไพร", "กำแพงเพชร – ผำกำแพงเพชร: จาก GAP สู่เชิงพาณิชย์", "พิษณุโลก – มะม่วงน้ำดอกไม้สีทองสู่มะม่วงพรีเมียมนอกฤดู", "ลำพูน – ถอดรหัสเกษตรมูลค่าสูงด้วยพื้นที่และเครือข่าย"], "Climate / Green / Resilience": ["กองแผนงาน – Climate Change จากนโยบายสู่การปฏิบัติ", "กองส่งเสริมโครงการพระราชดำริฯ – แผนปฏิบัติการด้านพืชรองรับ Climate Change", "ชัยนาท – การปลูกข้าวที่เท่าทันต่อภูมิอากาศ", "ปทุมธานี – การทำนาปลอดการเผา", "ลพบุรี – การปลูกข้าวด้วยเทคโนโลยี 4 ปรับ", "สิงห์บุรี – การทำนาด้วยเทคโนโลยีที่เท่าทันต่อการเปลี่ยนแปลงสภาพภูมิอากาศ", "กาฬสินธุ์ – การจัดการเศษวัสดุทางการเกษตรโดยไม่เผา", "ร้อยเอ็ด – การทำนาที่เท่าทันการเปลี่ยนแปลงสภาพภูมิอากาศด้วยเทคนิค 2 ป.", "ศรีสะเกษ – 3R เกษตรปลอดการเผา", "หนองบัวลำภู – ไถคนละครึ่ง ฟื้นฟูโครงสร้างดินด้วยปอเทือง", "อำนาจเจริญ – การปลูกถั่วเขียวหลังนา", "สงขลา – กระบวนการส่งเสริมการผลิตไม้ผลเมืองร้อนภายใต้ CSA", "แพร่ – พืชมูลค่าสูงที่เท่าทันต่อการเปลี่ยนแปลงสภาพภูมิอากาศ (ส้มโอ GI)", "ลำปาง – เทคนิคการสร้างแผนที่ความเสี่ยงน้ำท่วม"], "Operational Excellence / Governance": ["กลุ่มตรวจสอบภายใน – การจัดทำ Audit Universe และแผนการตรวจสอบภายใน", "กองการเจ้าหน้าที่ – กฎ ก.พ. และการคำนวณเลื่อนเงินเดือน", "กองคลัง – การจัดทำและตรวจใบสำคัญก่อนการเบิกจ่ายเงิน", "กองพัฒนาเกษตรกร – การบริหารโครงการและหลักการเขียนหนังสือราชการ", "กองส่งเสริมวิสาหกิจชุมชน – เครื่องมือสำหรับการตัดสินใจเรื่องการเปิดเผยข้อมูลเอกสาร", "สำนักงานเลขานุการกรม – องค์ความรู้ประมวลกฎหมายอาญา มาตรา 147", "นนทบุรี – คู่มือการปฏิบัติงานเจ้าหน้าที่: ขั้นตอนงานทะเบียนวิสาหกิจชุมชน", "อุดรธานี – แนวทางการจัดทำเอกสารทางราชการที่ถูกต้อง", "น่าน – แนวทาง 6 ขั้นตอนในการจัดทำรายงานสถานการณ์สินค้าเกษตร", "พะเยา – แนวทางการตรวจสอบและให้คำแนะนำสำหรับนักวิชาการส่งเสริมการเกษตร"], "Area-based / Pain Point / Service Solution": ["กองวิจัยและพัฒนางานส่งเสริมการเกษตร – เทคนิคการวิเคราะห์ Pain Point", "อ่างทอง – การบูรณาการร่วมกับภาคีเครือข่ายเชิงพื้นที่", "ชลบุรี – การบูรณาการงานวิจัยสู่การแก้ปัญหาพื้นที่อย่างยั่งยืน", "ระยอง – การพัฒนาทักษะการจัดทำแผนพัฒนาการเกษตรระดับตำบล", "นครราชสีมา – MRCF Plus สู่ Service Solution", "ยะลา – Raman Model", "เชียงใหม่ – AREA SMART Model", "ตาก – การใช้ข้อมูลสารสนเทศการเกษตรเชิงพื้นที่แบบบูรณาการ"], "KM / Facilitation / Learning Capability": ["สำนักพัฒนาการถ่ายทอดเทคโนโลยี – แนวทางบูรณาการ S-M-C-R และ SECI", "สสก.1 ชัยนาท – เทคนิคการนิเทศงานแบบโค้ชเชิงพัฒนา", "สระบุรี – แนวทางการสื่อสารและถ่ายทอดความรู้ด้านเทคโนโลยีการผลิต", "เลย – ทักษะการเป็นวิทยากรกระบวนกรและการจัดเวทีชุมชน", "พิจิตร – การจัดเวทีชุมชนแบบมีส่วนร่วม", "อุตรดิตถ์ – กระบวนการโรงเรียนเกษตรกร", "ระยอง – กระบวนการจัดเวทีชุมชนเพื่อวิเคราะห์พื้นที่ คน สินค้า และห่วงโซ่อุปทาน"]};
-const palette = ["#3B82F6","#10B981","#F59E0B","#EF4444","#8B5CF6","#14B8A6","#F97316","#6366F1","#84CC16","#EC4899","#06B6D4","#A855F7"];
-let selectedGroup=null, selectedTopic=null, selectedBackup1=null, selectedBackup2=null, logs=[];
+const palette=["#2563eb","#16a34a","#d97706","#dc2626","#7c3aed","#0891b2","#ea580c","#4f46e5","#65a30d","#db2777","#0e7490","#9333ea"];
+let availableGroups=[];
+let selectedGroup=null, mainTopic=null, backup1=null, backup2=null;
+let remainingTopics={};
+let logs=[];
 
-const INITIAL_GROUP_QUOTA = {};
-Object.keys(KM_DATA).forEach(g => {
-  INITIAL_GROUP_QUOTA[g] = 1;
-});
-let groupQuota = {...INITIAL_GROUP_QUOTA};
-let remainingTopics = {};
-Object.keys(KM_DATA).forEach(g => remainingTopics[g] = [...KM_DATA[g]]);
-
-function getAvailableGroups(){
-  return Object.keys(KM_DATA).filter(g => groupQuota[g] > 0);
+function resetData(){
+  availableGroups=Object.keys(KM_DATA);
+  remainingTopics={};
+  for(const g of availableGroups) remainingTopics[g]=[...KM_DATA[g]];
+  selectedGroup=null; mainTopic=null; backup1=null; backup2=null; logs=[];
 }
-
-function getDisplayGroupLabel(g){
-  return g;
-}
-
-function wrapText(ctx, text, x, y, maxWidth, lineHeight){
-  const words=text.split(' '); let line=''; let lines=[];
-  for(let n=0;n<words.length;n++){ const test=line+words[n]+' '; if(ctx.measureText(test).width>maxWidth&&n>0){lines.push(line.trim()); line=words[n]+' ';} else {line=test;} }
-  lines.push(line.trim());
-  const startY = y - (lines.length - 1) * lineHeight / 2;
-  lines.forEach((ln,i)=>ctx.fillText(ln,x,startY+i*lineHeight));
-}
-function shortLabel(t){ return t.length<=24?t:t.slice(0,22)+'…'; }
-
-function drawWheel(canvasId, labels, rotation=0){
-  const canvas=document.getElementById(canvasId), ctx=canvas.getContext('2d');
-  const w=canvas.width,h=canvas.height,cx=w/2,cy=h/2,r=Math.min(w,h)/2-12;
-  ctx.clearRect(0,0,w,h);
-  if(!labels.length){ ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2); ctx.fillStyle="#f4f6f8"; ctx.fill(); ctx.fillStyle="#708090"; ctx.font="28px TH Sarabun New, Sarabun, sans-serif"; ctx.textAlign="center"; ctx.fillText("ยังไม่มีข้อมูล",cx,cy); return; }
+function shortLabel(t){return t.length<=24?t:t.slice(0,22)+"…"}
+function wrapText(ctx,text,x,y,maxWidth,lineHeight){const words=text.split(" ");let line="",lines=[];for(const w of words){const test=line+w+" ";if(ctx.measureText(test).width>maxWidth&&line){lines.push(line.trim());line=w+" ";}else line=test;}lines.push(line.trim());const sy=y-(lines.length-1)*lineHeight/2;lines.forEach((ln,i)=>ctx.fillText(ln,x,sy+i*lineHeight));}
+function drawWheel(id,labels,rotation=0){
+  const c=document.getElementById(id),ctx=c.getContext("2d"),w=c.width,h=c.height,cx=w/2,cy=h/2,r=Math.min(w,h)/2-12;ctx.clearRect(0,0,w,h);
+  if(!labels.length){ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.fillStyle="#eef2f4";ctx.fill();ctx.fillStyle="#64748b";ctx.font="28px TH Sarabun New, Sarabun, sans-serif";ctx.textAlign="center";ctx.fillText("ไม่มีรายการ",cx,cy);return;}
   const slice=Math.PI*2/labels.length;
-  for(let i=0;i<labels.length;i++) {
-    const start=rotation+i*slice-Math.PI/2, end=start+slice;
-    ctx.beginPath(); ctx.moveTo(cx,cy); ctx.arc(cx,cy,r,start,end); ctx.closePath();
-    ctx.fillStyle=palette[i%palette.length]; ctx.fill(); ctx.strokeStyle="#fff"; ctx.lineWidth=3; ctx.stroke();
-    ctx.save(); ctx.translate(cx,cy); ctx.rotate(start+slice/2); ctx.textAlign="right"; ctx.fillStyle="#fff";
-    const fs=labels.length>18?18:labels.length>10?20:22; ctx.font=fs+'px TH Sarabun New, Sarabun, sans-serif';
-    wrapText(ctx, shortLabel(labels[i]), r-20, 0, r*0.56, fs); ctx.restore();
-  }
-  ctx.beginPath(); ctx.arc(cx,cy,48,0,Math.PI*2); ctx.fillStyle="#fff"; ctx.fill(); ctx.lineWidth=4; ctx.strokeStyle="#d8e0e8"; ctx.stroke();
-  ctx.fillStyle="#203040"; ctx.font="bold 24px TH Sarabun New, Sarabun, sans-serif"; ctx.textAlign="center"; ctx.fillText("สุ่ม",cx,cy+8);
+  labels.forEach((lab,i)=>{const st=rotation+i*slice-Math.PI/2,en=st+slice;ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,r,st,en);ctx.closePath();ctx.fillStyle=palette[i%palette.length];ctx.fill();ctx.strokeStyle="#fff";ctx.lineWidth=3;ctx.stroke();ctx.save();ctx.translate(cx,cy);ctx.rotate(st+slice/2);ctx.textAlign="right";ctx.fillStyle="#fff";const fs=labels.length>18?17:labels.length>10?19:22;ctx.font=fs+"px TH Sarabun New, Sarabun, sans-serif";wrapText(ctx,shortLabel(lab),r-18,0,r*.56,fs);ctx.restore();});
+  ctx.beginPath();ctx.arc(cx,cy,47,0,Math.PI*2);ctx.fillStyle="#fff";ctx.fill();ctx.strokeStyle="#d7e0e4";ctx.lineWidth=4;ctx.stroke();ctx.fillStyle="#1f2937";ctx.font="bold 24px TH Sarabun New, Sarabun, sans-serif";ctx.textAlign="center";ctx.fillText("สุ่ม",cx,cy+8);
 }
-
-function spin(canvasId, labels, onDone) {
-  if (!labels || !labels.length) return;
-
-  // 1) เลือกผลลัพธ์ก่อน เพื่อให้ "ข้อความผลการสุ่ม" กับ "ช่องที่ลูกศรชี้" เป็นรายการเดียวกันแน่นอน
-  const winnerIndex = Math.floor(Math.random() * labels.length);
-
-  // 2) คำนวณมุมให้ "กึ่งกลางช่องที่ชนะ" ไปหยุดตรงลูกศรด้านบนพอดี
-  const slice = Math.PI * 2 / labels.length;
-  const turns = 7 + Math.floor(Math.random() * 5); // หมุนหลายรอบเพื่อความรู้สึกเป็นวงล้อจริง
-  const targetRotation = turns * Math.PI * 2 - (winnerIndex + 0.5) * slice;
-
-  const duration = 4500 + Math.random() * 1000;
-  const start = performance.now();
-
-  function animate(now) {
-    const elapsed = now - start;
-    const t = Math.min(elapsed / duration, 1);
-    const eased = 1 - Math.pow(1 - t, 3);
-    const current = targetRotation * eased;
-
-    drawWheel(canvasId, labels, current);
-
-    if (t < 1) {
-      requestAnimationFrame(animate);
-    } else {
-      // วาดอีกครั้งด้วยมุมปลายทางที่แน่นอน ป้องกันเศษทศนิยมจากเฟรมสุดท้าย
-      drawWheel(canvasId, labels, targetRotation);
-      onDone(winnerIndex);
-    }
-  }
-
-  requestAnimationFrame(animate);
+function spin(id,labels,done){
+  if(!labels.length)return;
+  const win=Math.floor(Math.random()*labels.length), slice=Math.PI*2/labels.length, turns=8+Math.floor(Math.random()*4), target=turns*Math.PI*2-(win+.5)*slice, dur=3800+Math.random()*900, start=performance.now();
+  function frame(now){const t=Math.min((now-start)/dur,1),e=1-Math.pow(1-t,3),rot=target*e;drawWheel(id,labels,rot);if(t<1)requestAnimationFrame(frame);else{drawWheel(id,labels,target);done(win);}}requestAnimationFrame(frame);
 }
+function addLog(txt){logs.unshift(new Date().toLocaleTimeString("th-TH")+" – "+txt);document.getElementById("logBox").innerHTML=logs.slice(0,20).join("<br>")}
+function renderTopics(){const items=selectedGroup?remainingTopics[selectedGroup]:[];document.getElementById("topicCountTag").textContent=items.length+" เรื่อง";document.getElementById("topicList").innerHTML=items.length?"<ol>"+items.map(x=>"<li>"+x+"</li>").join("")+"</ol>":'<div class="status">ไม่มีเรื่องเหลือในกลุ่มนี้</div>';}
+function renderSummary(){document.getElementById("summaryBox").innerHTML="<strong>กลุ่ม:</strong> "+(selectedGroup||"-")+"<br><strong>เรื่องหลัก:</strong> "+(mainTopic||"-")+"<br><strong>สำรอง 1:</strong> "+(backup1||"-")+"<br><strong>สำรอง 2:</strong> "+(backup2||"-");}
+function renderGroups(){drawWheel("groupWheel",availableGroups);document.getElementById("groupCountTag").textContent=availableGroups.length+" กลุ่ม";}
+function resetUI(){resetData();renderGroups();drawWheel("topicWheel",[]);document.getElementById("groupResult").textContent="ยังไม่ได้สุ่มกลุ่ม";document.getElementById("groupStatus").textContent="ทุกกลุ่มมีสิทธิ์ถูกสุ่ม 1 ครั้ง";document.getElementById("mainResult").textContent="เรื่องหลัก: -";document.getElementById("backup1Result").textContent="สำรอง 1: -";document.getElementById("backup2Result").textContent="สำรอง 2: -";document.getElementById("topicStatus").textContent="กรุณาสุ่มกลุ่มก่อน";document.getElementById("topicList").innerHTML='<div class="status">ยังไม่มีกลุ่มที่ถูกเลือก</div>';document.getElementById("topicCountTag").textContent="0 เรื่อง";document.getElementById("spinGroupBtn").disabled=false;document.getElementById("spinMainBtn").disabled=true;document.getElementById("spinBackup1Btn").disabled=true;document.getElementById("spinBackup2Btn").disabled=true;document.getElementById("nextGroupBtn").disabled=true;document.getElementById("copyBtn").disabled=true;document.getElementById("logBox").textContent="ยังไม่มีประวัติการสุ่ม";renderSummary();}
 
-function refreshTopicList(groupName){
-  const items=remainingTopics[groupName]||[];
-  document.getElementById("topicListBox").innerHTML="<ol>"+items.map(x=>"<li>"+x+"</li>").join("")+"</ol>";
-  document.getElementById("topicCountTag").textContent=items.length+" เรื่อง";
-}
-function addLog(txt){
-  logs.unshift(new Date().toLocaleTimeString("th-TH")+" – "+txt);
-  if(logs.length>20) logs=logs.slice(0,20);
-  document.getElementById("logBox").innerHTML=logs.join("<br>");
-}
-function updateSummary(){
-  document.getElementById("summaryBox").innerHTML =
-    "<strong>กลุ่ม:</strong> " + (selectedGroup || "-") +
-    "<br><strong>เรื่องหลัก:</strong> " + (selectedTopic || "-") +
-    "<br><strong>สำรอง 1:</strong> " + (selectedBackup1 || "-") +
-    "<br><strong>สำรอง 2:</strong> " + (selectedBackup2 || "-");
-}
-function resetAll(){
-  selectedGroup=null; selectedTopic=null; selectedBackup=null; logs=[];
-  groupQuota = {...INITIAL_GROUP_QUOTA};
-  remainingTopics = {};
-  Object.keys(KM_DATA).forEach(g => remainingTopics[g] = [...KM_DATA[g]]);
-  drawWheel("groupWheel", getAvailableGroups());
-  drawWheel("topicWheel", []);
-  document.getElementById("groupResult").innerHTML="ยังไม่ได้สุ่มกลุ่ม";
-  document.getElementById("topicResult").innerHTML="กรุณาสุ่มกลุ่มก่อน";
-  document.getElementById("backup1Result").innerHTML="สำรอง 1: -";
-  document.getElementById("backup2Result").innerHTML="สำรอง 2: -";
-  document.getElementById("groupStatus").textContent="ทุกกลุ่มจะถูกสุ่ม 1 ครั้ง เมื่อได้เรื่องหลักแล้ว กลุ่มนั้นจะหายออกจากวงล้อ และสามารถสุ่มสำรองได้อีก 2 เรื่อง";
-  document.getElementById("topicStatus").textContent="เมื่อได้กลุ่มแล้ว ระบบจะโหลดรายชื่อเรื่องในกลุ่มนั้นอัตโนมัติ";
-  document.getElementById("topicListBox").innerHTML='<div class="status">ยังไม่มีกลุ่มที่ถูกเลือก</div>';
-  document.getElementById("spinTopicBtn").disabled=true;
-  document.getElementById("spinBackup1Btn").disabled=true;
-  document.getElementById("spinBackup2Btn").disabled=true;
-  document.getElementById("spinGroupBtn").disabled=false;
-  document.getElementById("copyBtn").disabled=true;
-  document.getElementById("topicCountTag").textContent="0 เรื่อง";
-  document.getElementById("logBox").textContent="ยังไม่มีประวัติการสุ่ม";
-  updateSummary();
-}
-document.getElementById("spinGroupBtn").addEventListener("click", () => {
-  const availableGroups = getAvailableGroups();
-  if (!availableGroups.length) {
-    document.getElementById("groupResult").innerHTML="<strong>สุ่มครบทุกกลุ่มแล้ว</strong>";
-    document.getElementById("groupStatus").textContent="กด “เริ่มใหม่” หากต้องการเริ่มรอบใหม่";
-    document.getElementById("spinGroupBtn").disabled=true;
-    return;
-  }
-  document.getElementById("groupStatus").textContent="กำลังสุ่มกลุ่ม...";
-  document.getElementById("spinGroupBtn").disabled=true;
-  spin("groupWheel", availableGroups, idx => {
-    selectedGroup = availableGroups[idx];
-    selectedTopic = null;
-    selectedBackup1 = null;
-    selectedBackup2 = null;
-    refreshTopicList(selectedGroup);
-    drawWheel("topicWheel", remainingTopics[selectedGroup]);
-    document.getElementById("groupResult").innerHTML = "<strong>ผลการสุ่มกลุ่ม:</strong> " + selectedGroup;
-    document.getElementById("groupStatus").textContent = "ได้กลุ่มแล้ว กรุณาสุ่ม 1 เรื่อง จากนั้นกลุ่มนี้จะหายออกจากวงล้อ";
-    document.getElementById("topicResult").innerHTML = "พร้อมสุ่มเรื่องในกลุ่มนี้";
-    document.getElementById("topicStatus").textContent = "กลุ่มนี้มี " + remainingTopics[selectedGroup].length + " เรื่อง";
-    document.getElementById("spinTopicBtn").disabled=false;
-    document.getElementById("spinBackup1Btn").disabled=true;
-    document.getElementById("spinBackup2Btn").disabled=true;
-    document.getElementById("copyBtn").disabled=true;
-    addLog("สุ่มกลุ่มได้: " + selectedGroup);
-    updateSummary();
-  });
-});
-document.getElementById("spinTopicBtn").addEventListener("click", () => {
-  if (!selectedGroup) return;
+document.getElementById("spinGroupBtn").onclick=()=>{if(!availableGroups.length)return;document.getElementById("spinGroupBtn").disabled=true;document.getElementById("groupStatus").textContent="กำลังสุ่มกลุ่ม...";spin("groupWheel",availableGroups,idx=>{selectedGroup=availableGroups[idx];mainTopic=backup1=backup2=null;document.getElementById("groupResult").innerHTML="<strong>ผลการสุ่มกลุ่ม:</strong> "+selectedGroup;document.getElementById("groupStatus").textContent="กรุณาสุ่มเรื่องหลัก 1 เรื่อง";drawWheel("topicWheel",remainingTopics[selectedGroup]);renderTopics();document.getElementById("mainResult").textContent="เรื่องหลัก: -";document.getElementById("backup1Result").textContent="สำรอง 1: -";document.getElementById("backup2Result").textContent="สำรอง 2: -";document.getElementById("topicStatus").textContent="พร้อมสุ่มเรื่องหลัก";document.getElementById("spinMainBtn").disabled=false;addLog("สุ่มกลุ่มได้: "+selectedGroup);renderSummary();});};
 
-  const labels = remainingTopics[selectedGroup];
-  if (!labels || !labels.length) {
-    document.getElementById("topicResult").innerHTML =
-      "<strong>ไม่มีเรื่องให้สุ่มในกลุ่มนี้</strong>";
-    return;
-  }
+document.getElementById("spinMainBtn").onclick=()=>{const labels=remainingTopics[selectedGroup]||[];if(!labels.length)return;document.getElementById("spinMainBtn").disabled=true;document.getElementById("topicStatus").textContent="กำลังสุ่มเรื่องหลัก...";spin("topicWheel",labels,idx=>{mainTopic=labels[idx];remainingTopics[selectedGroup]=remainingTopics[selectedGroup].filter(x=>x!==mainTopic);availableGroups=availableGroups.filter(g=>g!==selectedGroup);renderGroups();renderTopics();document.getElementById("mainResult").innerHTML="<strong>เรื่องหลัก:</strong> "+mainTopic;document.getElementById("groupStatus").textContent=selectedGroup+" ถูกตัดออกจากวงล้อกลุ่มแล้ว";document.getElementById("topicStatus").textContent="หากจำเป็น ให้สุ่มสำรอง 1 และสำรอง 2 หรือไปกลุ่มถัดไป";document.getElementById("spinBackup1Btn").disabled=remainingTopics[selectedGroup].length<1;document.getElementById("spinBackup2Btn").disabled=true;document.getElementById("nextGroupBtn").disabled=false;document.getElementById("copyBtn").disabled=false;addLog("เรื่องหลัก: "+mainTopic);renderSummary();});};
 
-  document.getElementById("spinTopicBtn").disabled=true;
-  document.getElementById("topicStatus").textContent="กำลังสุ่มเรื่องหลัก...";
+document.getElementById("spinBackup1Btn").onclick=()=>{const labels=remainingTopics[selectedGroup]||[];if(!labels.length)return;document.getElementById("spinBackup1Btn").disabled=true;document.getElementById("topicStatus").textContent="กำลังสุ่มสำรอง 1...";spin("topicWheel",labels,idx=>{backup1=labels[idx];remainingTopics[selectedGroup]=remainingTopics[selectedGroup].filter(x=>x!==backup1);renderTopics();document.getElementById("backup1Result").innerHTML="<strong>สำรอง 1:</strong> "+backup1;document.getElementById("spinBackup2Btn").disabled=remainingTopics[selectedGroup].length<1;document.getElementById("topicStatus").textContent="ได้สำรอง 1 แล้ว สามารถสุ่มสำรอง 2 ต่อได้";addLog("สำรอง 1: "+backup1);renderSummary();});};
 
-  spin("topicWheel", labels, idx => {
-    selectedTopic = labels[idx];
+document.getElementById("spinBackup2Btn").onclick=()=>{const labels=remainingTopics[selectedGroup]||[];if(!labels.length)return;document.getElementById("spinBackup2Btn").disabled=true;document.getElementById("topicStatus").textContent="กำลังสุ่มสำรอง 2...";spin("topicWheel",labels,idx=>{backup2=labels[idx];remainingTopics[selectedGroup]=remainingTopics[selectedGroup].filter(x=>x!==backup2);renderTopics();document.getElementById("backup2Result").innerHTML="<strong>สำรอง 2:</strong> "+backup2;document.getElementById("topicStatus").textContent="ได้เรื่องหลักและสำรองครบแล้ว";addLog("สำรอง 2: "+backup2);renderSummary();});};
 
-    // ทุกกลุ่มใช้สิทธิ์ได้ 1 ครั้ง
-    groupQuota[selectedGroup] = 0;
+document.getElementById("nextGroupBtn").onclick=()=>{selectedGroup=null;mainTopic=backup1=backup2=null;drawWheel("topicWheel",[]);document.getElementById("mainResult").textContent="เรื่องหลัก: -";document.getElementById("backup1Result").textContent="สำรอง 1: -";document.getElementById("backup2Result").textContent="สำรอง 2: -";document.getElementById("topicList").innerHTML='<div class="status">กรุณาสุ่มกลุ่มถัดไป</div>';document.getElementById("topicCountTag").textContent="0 เรื่อง";document.getElementById("topicStatus").textContent="พร้อมสุ่มกลุ่มถัดไป";document.getElementById("spinMainBtn").disabled=true;document.getElementById("spinBackup1Btn").disabled=true;document.getElementById("spinBackup2Btn").disabled=true;document.getElementById("nextGroupBtn").disabled=true;document.getElementById("spinGroupBtn").disabled=availableGroups.length===0;document.getElementById("groupResult").innerHTML=availableGroups.length?"พร้อมสุ่มกลุ่มถัดไป":"<strong>สุ่มครบทุกกลุ่มแล้ว</strong>";renderSummary();};
 
-    // ตัดเรื่องหลักออกจากรายการ เพื่อให้สำรองไม่ซ้ำ
-    remainingTopics[selectedGroup] =
-      remainingTopics[selectedGroup].filter(x => x !== selectedTopic);
-
-    document.getElementById("topicResult").innerHTML =
-      "<strong>ผลการสุ่มเรื่องหลัก:</strong> " + selectedTopic;
-
-    const availableGroups = getAvailableGroups();
-    drawWheel("groupWheel", availableGroups);
-
-    document.getElementById("groupStatus").textContent =
-      selectedGroup + " ถูกตัดออกจากวงล้อกลุ่มแล้ว";
-
-    refreshTopicList(selectedGroup);
-
-    document.getElementById("topicStatus").textContent =
-      "สุ่มเรื่องหลักแล้ว หากหน่วยงานไม่เข้าร่วม ให้สุ่มสำรอง 1 และสำรอง 2 ตามลำดับ";
-
-    document.getElementById("spinBackup1Btn").disabled =
-      remainingTopics[selectedGroup].length === 0;
-    document.getElementById("spinBackup2Btn").disabled = true;
-    document.getElementById("copyBtn").disabled=false;
-    document.getElementById("spinGroupBtn").disabled =
-      (availableGroups.length === 0);
-
-    addLog("สุ่มเรื่องหลักได้: " + selectedTopic);
-    addLog("ตัดกลุ่มออกจากวงล้อ: " + selectedGroup);
-    updateSummary();
-  });
-});
-
-document.getElementById("spinBackup1Btn").addEventListener("click", () => {
-  if (!selectedGroup || !selectedTopic) return;
-
-  const labels = remainingTopics[selectedGroup];
-  if (!labels || !labels.length) {
-    document.getElementById("backup1Result").innerHTML =
-      "<strong>ไม่มีเรื่องสำรอง 1 เหลือในกลุ่มนี้</strong>";
-    return;
-  }
-
-  document.getElementById("spinBackup1Btn").disabled=true;
-  document.getElementById("topicStatus").textContent="กำลังสุ่มสำรอง 1...";
-
-  spin("topicWheel", labels, idx => {
-    selectedBackup1 = labels[idx];
-
-    // ตัดสำรอง 1 ออก เพื่อไม่ให้สำรอง 2 ซ้ำ
-    remainingTopics[selectedGroup] =
-      remainingTopics[selectedGroup].filter(x => x !== selectedBackup1);
-
-    document.getElementById("backup1Result").innerHTML =
-      "<strong>สำรอง 1:</strong> " + selectedBackup1;
-
-    document.getElementById("spinBackup2Btn").disabled =
-      remainingTopics[selectedGroup].length === 0;
-
-    document.getElementById("topicStatus").textContent =
-      "ได้สำรอง 1 แล้ว สามารถสุ่มสำรอง 2 ต่อได้";
-
-    addLog("สุ่มสำรอง 1 ได้: " + selectedBackup1);
-    updateSummary();
-  });
-});
-
-document.getElementById("spinBackup2Btn").addEventListener("click", () => {
-  if (!selectedGroup || !selectedTopic || !selectedBackup1) return;
-
-  const labels = remainingTopics[selectedGroup];
-  if (!labels || !labels.length) {
-    document.getElementById("backup2Result").innerHTML =
-      "<strong>ไม่มีเรื่องสำรอง 2 เหลือในกลุ่มนี้</strong>";
-    return;
-  }
-
-  document.getElementById("spinBackup2Btn").disabled=true;
-  document.getElementById("topicStatus").textContent="กำลังสุ่มสำรอง 2...";
-
-  spin("topicWheel", labels, idx => {
-    selectedBackup2 = labels[idx];
-
-    remainingTopics[selectedGroup] =
-      remainingTopics[selectedGroup].filter(x => x !== selectedBackup2);
-
-    document.getElementById("backup2Result").innerHTML =
-      "<strong>สำรอง 2:</strong> " + selectedBackup2;
-
-    document.getElementById("topicStatus").textContent =
-      "สุ่มเรื่องหลักและสำรองครบ 2 เรื่องแล้ว";
-
-    addLog("สุ่มสำรอง 2 ได้: " + selectedBackup2);
-    updateSummary();
-  });
-});
-
-document.getElementById("copyBtn").addEventListener("click", async ()=>{
-  const text = "กลุ่มองค์ความรู้: " + (selectedGroup || "-") + "
-เรื่องหลัก: " + (selectedTopic || "-") + "
-สำรอง 1: " + (selectedBackup1 || "-") + "
-สำรอง 2: " + (selectedBackup2 || "-");
-  try { await navigator.clipboard.writeText(text); addLog("คัดลอกผลลัพธ์แล้ว"); } catch(e) { alert(text); }
-});
-document.getElementById("resetBtn").addEventListener("click", resetAll);
-
-document.getElementById("openFullBtn").addEventListener("click", () => {
-  const clone = document.documentElement.outerHTML;
-  const blob = new Blob([clone], {type:"text/html"});
-  const url = URL.createObjectURL(blob);
-  window.open(url, "_blank", "noopener,noreferrer");
-});
-
-resetAll();
+document.getElementById("copyBtn").onclick=async()=>{const txt="กลุ่ม: "+(selectedGroup||"-")+"\nเรื่องหลัก: "+(mainTopic||"-")+"\nสำรอง 1: "+(backup1||"-")+"\nสำรอง 2: "+(backup2||"-");try{await navigator.clipboard.writeText(txt);addLog("คัดลอกผลลัพธ์แล้ว");}catch(e){alert(txt)}};
+document.getElementById("resetBtn").onclick=resetUI;
+resetUI();
 </script>
 </body></html>
