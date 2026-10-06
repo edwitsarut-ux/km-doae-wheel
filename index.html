@@ -180,7 +180,7 @@ function updateSummary(){
     "<br><strong>สำรอง 2:</strong> " + (selectedBackup2 || "-");
 }
 function resetAll(){
-  selectedGroup=null; selectedTopic=null; selectedBackup=null; logs=[];
+  selectedGroup=null; selectedTopic=null; selectedBackup1=null; selectedBackup2=null; logs=[];
   groupQuota = {...INITIAL_GROUP_QUOTA};
   remainingTopics = {};
   Object.keys(KM_DATA).forEach(g => remainingTopics[g] = [...KM_DATA[g]]);
@@ -268,8 +268,7 @@ document.getElementById("spinTopicBtn").addEventListener("click", () => {
     document.getElementById("topicStatus").textContent =
       "สุ่มเรื่องหลักแล้ว หากหน่วยงานไม่เข้าร่วม ให้สุ่มสำรอง 1 และสำรอง 2 ตามลำดับ";
 
-    document.getElementById("spinBackup1Btn").disabled =
-      remainingTopics[selectedGroup].length === 0;
+    document.getElementById("spinBackup1Btn").disabled = (remainingTopics[selectedGroup].length < 1);
     document.getElementById("spinBackup2Btn").disabled = true;
     document.getElementById("copyBtn").disabled=false;
     document.getElementById("spinGroupBtn").disabled =
@@ -282,64 +281,49 @@ document.getElementById("spinTopicBtn").addEventListener("click", () => {
 });
 
 document.getElementById("spinBackup1Btn").addEventListener("click", () => {
-  if (!selectedGroup || !selectedTopic) return;
-
-  const labels = remainingTopics[selectedGroup];
-  if (!labels || !labels.length) {
-    document.getElementById("backup1Result").innerHTML =
-      "<strong>ไม่มีเรื่องสำรอง 1 เหลือในกลุ่มนี้</strong>";
+  if (!selectedGroup || !selectedTopic) {
+    document.getElementById("topicStatus").textContent = "กรุณาสุ่มเรื่องหลักก่อน";
     return;
   }
-
-  document.getElementById("spinBackup1Btn").disabled=true;
-  document.getElementById("topicStatus").textContent="กำลังสุ่มสำรอง 1...";
-
+  const labels = remainingTopics[selectedGroup] || [];
+  if (!labels.length) {
+    document.getElementById("backup1Result").innerHTML = "<strong>ไม่มีเรื่องเหลือสำหรับสำรอง 1</strong>";
+    return;
+  }
+  document.getElementById("spinBackup1Btn").disabled = true;
+  document.getElementById("topicStatus").textContent = "กำลังสุ่มสำรอง 1...";
   spin("topicWheel", labels, idx => {
     selectedBackup1 = labels[idx];
-
-    // ตัดสำรอง 1 ออก เพื่อไม่ให้สำรอง 2 ซ้ำ
-    remainingTopics[selectedGroup] =
-      remainingTopics[selectedGroup].filter(x => x !== selectedBackup1);
-
-    document.getElementById("backup1Result").innerHTML =
-      "<strong>สำรอง 1:</strong> " + selectedBackup1;
-
-    document.getElementById("spinBackup2Btn").disabled =
-      remainingTopics[selectedGroup].length === 0;
-
-    document.getElementById("topicStatus").textContent =
-      "ได้สำรอง 1 แล้ว สามารถสุ่มสำรอง 2 ต่อได้";
-
+    remainingTopics[selectedGroup] = remainingTopics[selectedGroup].filter(x => x !== selectedBackup1);
+    document.getElementById("backup1Result").innerHTML = "<strong>สำรอง 1:</strong> " + selectedBackup1;
+    document.getElementById("spinBackup2Btn").disabled = (remainingTopics[selectedGroup].length < 1);
+    document.getElementById("topicStatus").textContent = "ได้สำรอง 1 แล้ว กดสุ่มสำรอง 2 ต่อได้";
     addLog("สุ่มสำรอง 1 ได้: " + selectedBackup1);
     updateSummary();
   });
 });
 
 document.getElementById("spinBackup2Btn").addEventListener("click", () => {
-  if (!selectedGroup || !selectedTopic || !selectedBackup1) return;
-
-  const labels = remainingTopics[selectedGroup];
-  if (!labels || !labels.length) {
-    document.getElementById("backup2Result").innerHTML =
-      "<strong>ไม่มีเรื่องสำรอง 2 เหลือในกลุ่มนี้</strong>";
+  if (!selectedGroup || !selectedTopic) {
+    document.getElementById("topicStatus").textContent = "กรุณาสุ่มเรื่องหลักก่อน";
     return;
   }
-
-  document.getElementById("spinBackup2Btn").disabled=true;
-  document.getElementById("topicStatus").textContent="กำลังสุ่มสำรอง 2...";
-
+  if (!selectedBackup1) {
+    document.getElementById("topicStatus").textContent = "กรุณาสุ่มสำรอง 1 ก่อน";
+    return;
+  }
+  const labels = remainingTopics[selectedGroup] || [];
+  if (!labels.length) {
+    document.getElementById("backup2Result").innerHTML = "<strong>ไม่มีเรื่องเหลือสำหรับสำรอง 2</strong>";
+    return;
+  }
+  document.getElementById("spinBackup2Btn").disabled = true;
+  document.getElementById("topicStatus").textContent = "กำลังสุ่มสำรอง 2...";
   spin("topicWheel", labels, idx => {
     selectedBackup2 = labels[idx];
-
-    remainingTopics[selectedGroup] =
-      remainingTopics[selectedGroup].filter(x => x !== selectedBackup2);
-
-    document.getElementById("backup2Result").innerHTML =
-      "<strong>สำรอง 2:</strong> " + selectedBackup2;
-
-    document.getElementById("topicStatus").textContent =
-      "สุ่มเรื่องหลักและสำรองครบ 2 เรื่องแล้ว";
-
+    remainingTopics[selectedGroup] = remainingTopics[selectedGroup].filter(x => x !== selectedBackup2);
+    document.getElementById("backup2Result").innerHTML = "<strong>สำรอง 2:</strong> " + selectedBackup2;
+    document.getElementById("topicStatus").textContent = "สุ่มเรื่องหลักและสำรองครบ 2 เรื่องแล้ว";
     addLog("สุ่มสำรอง 2 ได้: " + selectedBackup2);
     updateSummary();
   });
